@@ -1,94 +1,557 @@
-<!DOCTYPE html><!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Bottanuco Volley</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottanuco Volley | Official Website</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f5f5f5;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        header {
-            background-color: #024490;
-            color: #F5F520;
-            padding: 15px;
-            font-size: 28px;
+
+        :root {
+            --blu: #024490;
+            --blu-scuro: #012653;
+            --giallo: #F5F520;
+            --sfondo: #f5f7fa;
+            --testo: #17243a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--sfondo);
+            color: var(--testo);
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 85px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 9%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+            color: var(--blu);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #d5d500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--testo);
+            font-size: 14px;
             font-weight: bold;
+            transition: 0.2s;
         }
-        .indirizzo {
-            background-color: #F5F520;
-            color: #024490;
-            padding: 10px;
-            font-size: 18px;
+
+        .nav-links a:hover {
+            color: var(--blu);
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(
+                120deg,
+                var(--blu-scuro),
+                var(--blu)
+            );
+            min-height: 480px;
+            padding: 100px 10%;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "VOLLEY";
+            position: absolute;
+            right: -20px;
+            bottom: -45px;
+            font-size: 180px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.04);
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tag {
+            color: var(--giallo);
             font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
         }
-        .menu, .submenu {
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #d8e4f3;
+            max-width: 520px;
+        }
+
+        .hero-button {
+            display: inline-block;
             margin-top: 30px;
-        }
-        button {
-            display: block;
-            width: 250px;
-            margin: 10px auto;
-            padding: 15px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            background-color: #F5F520;
-            color: #024490;
+            background: var(--giallo);
+            color: var(--blu-scuro);
+            padding: 15px 28px;
+            text-decoration: none;
             font-weight: bold;
-            transition: transform 0.2s, background-color 0.3s;
+            border-radius: 5px;
+            transition: 0.2s;
         }
-        button:hover {
-            background-color: #d4d40f;
-            transform: scale(1.05);
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            background: #ffff58;
         }
-        .hidden {
+
+        /* SEZIONI */
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 80px 25px;
+        }
+
+        .section-label {
+            color: var(--blu);
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--blu-scuro);
+        }
+
+        .section-description {
+            color: #687386;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* SQUADRE */
+
+        .teams {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            padding: 35px;
+            border: 1px solid #e8edf3;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .team-number {
+            font-size: 65px;
+            font-weight: 900;
+            color: #edf1f7;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+
+        .team-card h3 {
+            color: var(--blu);
+            font-size: 25px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .team-card p {
+            color: #687386;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .division {
+            display: inline-block;
+            margin-top: 25px;
+            background: var(--giallo);
+            color: var(--blu-scuro);
+            padding: 9px 14px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .team-link {
+            display: block;
+            margin-top: 25px;
+            color: var(--blu);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .team-link:hover {
+            text-decoration: underline;
+        }
+
+        /* SOCIETA */
+
+        .about {
+            background: white;
+            border-top: 1px solid #edf0f5;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about h2 {
+            color: var(--blu-scuro);
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #687386;
+            line-height: 1.9;
+            font-size: 15px;
+        }
+
+        .about-box {
+            background: var(--blu);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .about-box h3 {
+            color: var(--giallo);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            color: white;
+        }
+
+        /* CONTATTI */
+
+        .contact {
+            background: var(--blu-scuro);
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .contact h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            color: #ccd8e8;
+            line-height: 1.8;
+        }
+
+        .contact strong {
+            color: var(--giallo);
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #001a38;
+            color: #8495ad;
+            text-align: center;
+            padding: 22px;
+            font-size: 12px;
+        }
+
+        /* DETTAGLI SQUADRA */
+
+        .team-details {
             display: none;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e8edf3;
+            color: #687386;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .team-details.active {
+            display: block;
+        }
+
+        @media (max-width: 750px) {
+            nav {
+                padding: 0 5%;
+                height: auto;
+                min-height: 75px;
+                flex-wrap: wrap;
+                gap: 15px;
+                padding-top: 18px;
+                padding-bottom: 18px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 80px 7%;
+            }
+
+            .teams,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 29px;
+            }
+
+            .hero::after {
+                font-size: 100px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<header>🏐 Bottanuco Volley 🏐</header>
-<div class="indirizzo">📍 Via John Fitzgerald Kennedy, 8, 24040 Bottanuco (BG)</div>
+    <!-- NAVBAR -->
 
-<!-- Menu principale -->
-<div id="mainMenu" class="menu">
-    <button onclick="showMenu('maschile')">Maschile</button>
-    <button onclick="showMenu('femminile')">Femminile</button>
-</div>
+    <nav>
+        <div class="logo">BOTTANUCO <span>VOLLEY.</span></div>
 
-<!-- Sottomenù Maschile -->
-<div id="maschile" class="submenu hidden">
-    <button onclick="alert('Seconda Divisione Maschile')">Seconda Divisione</button>
-    <button onclick="alert('Prima Divisione Maschile')">Prima Divisione</button>
-    <button onclick="alert('Under 17 Maschile')">Under 17</button>
-    <button onclick="backToMain()">⬅ Torna al menu</button>
-</div>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#squadre">SQUADRE</a>
+            <a href="#societa">SOCIETÀ</a>
+            <a href="#contatti">CONTATTI</a>
+        </div>
+    </nav>
 
-<!-- Sottomenù Femminile -->
-<div id="femminile" class="submenu hidden">
-    <button onclick="alert('Seconda Divisione Femminile')">Seconda Divisione</button>
-    <button onclick="alert('Terza Divisione Femminile')">Terza Divisione</button>
-    <button onclick="alert('Under 14 Femminile')">Under 14</button>
-    <button onclick="backToMain()">⬅ Torna al menu</button>
-</div>
+    <!-- HERO -->
 
-<script>
-    function showMenu(menuId) {
-        document.getElementById('mainMenu').classList.add('hidden');
-        document.getElementById(menuId).classList.remove('hidden');
-    }
-    function backToMain() {
-        document.querySelectorAll('.submenu').forEach(menu => menu.classList.add('hidden'));
-        document.getElementById('mainMenu').classList.remove('hidden');
-    }
-</script>
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <div class="tag">PASSIONE • SPORT • SQUADRA</div>
+
+            <h1>INSIEME,<br>OLTRE LA RETE.</h1>
+
+            <p>
+                Benvenuti nel sito ufficiale del Bottanuco Volley.
+                Una società, una passione e un unico obiettivo:
+                crescere insieme attraverso la pallavolo.
+            </p>
+
+            <a href="#squadre" class="hero-button">
+                SCOPRI LE SQUADRE →
+            </a>
+
+        </div>
+    </section>
+
+    <!-- SQUADRE -->
+
+    <section class="container" id="squadre">
+
+        <div class="section-label">LE NOSTRE FORMAZIONI</div>
+
+        <h2 class="section-title">LE SQUADRE</h2>
+
+        <p class="section-description">
+            Scopri le formazioni del Bottanuco Volley e i rispettivi
+            campionati.
+        </p>
+
+        <div class="teams">
+
+            <!-- PRIMA SQUADRA -->
+
+            <div class="team-card">
+
+                <div class="team-number">01</div>
+
+                <h3>Prima Squadra</h3>
+
+                <p>
+                    La formazione principale del Bottanuco Volley,
+                    impegnata nel campionato regionale di Serie C.
+                    Competizione, determinazione e spirito di squadra.
+                </p>
+
+                <span class="division">SERIE C</span>
+
+                <a class="team-link"
+                   onclick="toggleDetails('prima')">
+                    SCOPRI LA SQUADRA →
+                </a>
+
+                <div class="team-details" id="prima">
+                    <strong>Categoria:</strong> Prima Squadra<br>
+                    <strong>Campionato:</strong> Serie C<br>
+                    <strong>Società:</strong> Bottanuco Volley
+                </div>
+
+            </div>
+
+            <!-- SECONDA SQUADRA -->
+
+            <div class="team-card">
+
+                <div class="team-number">02</div>
+
+                <h3>Seconda Squadra</h3>
+
+                <p>
+                    Una formazione competitiva che partecipa al
+                    campionato provinciale di Seconda Divisione,
+                    con l'obiettivo di migliorare e crescere.
+                </p>
+
+                <span class="division">SECONDA DIVISIONE</span>
+
+                <a class="team-link"
+                   onclick="toggleDetails('seconda')">
+                    SCOPRI LA SQUADRA →
+                </a>
+
+                <div class="team-details" id="seconda">
+                    <strong>Categoria:</strong> Seconda Squadra<br>
+                    <strong>Campionato:</strong> Seconda Divisione<br>
+                    <strong>Società:</strong> Bottanuco Volley
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SOCIETA -->
+
+    <section class="about" id="societa">
+
+        <div class="container about-content">
+
+            <div>
+                <div class="section-label">CHI SIAMO</div>
+
+                <h2>LA PASSIONE<br>CI UNISCE.</h2>
+
+                <p>
+                    Il Bottanuco Volley è una realtà sportiva
+                    dedicata alla pallavolo e alla crescita
+                    degli atleti. Attraverso il lavoro di squadra,
+                    l'impegno e la passione, la società promuove
+                    i valori dello sport dentro e fuori dal campo.
+                </p>
+            </div>
+
+            <div class="about-box">
+
+                <h3>Un'unica squadra.</h3>
+
+                <p>
+                    Due formazioni, un solo nome.
+                    Il Bottanuco Volley rappresenta l'impegno
+                    di atleti, allenatori e società che condividono
+                    la stessa passione per la pallavolo.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTATTI -->
+
+    <section class="contact" id="contatti">
+
+        <h2>VIENI A TROVARCI.</h2>
+
+        <p>
+            Bottanuco Volley<br>
+            <strong>Via John Fitzgerald Kennedy, 8</strong><br>
+            24040 Bottanuco (BG)
+        </p>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Via+John+Fitzgerald+Kennedy+8+Bottanuco"
+           target="_blank"
+           class="hero-button">
+            COME RAGGIUNGERCI →
+        </a>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 Bottanuco Volley — Tutti i diritti riservati.
+    </footer>
+
+    <script>
+        function toggleDetails(id) {
+
+            const selected = document.getElementById(id);
+
+            selected.classList.toggle('active');
+
+        }
+    </script>
 
 </body>
 </html>
-
