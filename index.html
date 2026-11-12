@@ -21,6 +21,10 @@
             --testo: #17243a;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: var(--sfondo);
@@ -30,24 +34,38 @@
         /* NAVBAR */
 
         nav {
-            height: 85px;
+            min-height: 85px;
             background: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 9%;
+            padding: 12px 9%;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
         }
 
         .logo {
-            font-size: 23px;
+            font-size: 21px;
             font-weight: 900;
             color: var(--blu);
-            letter-spacing: -1px;
+            letter-spacing: -0.8px;
         }
 
         .logo span {
-            color: #d5d500;
+            color: #baba00;
         }
 
         .nav-links {
@@ -70,11 +88,7 @@
         /* HERO */
 
         .hero {
-            background: linear-gradient(
-                120deg,
-                var(--blu-scuro),
-                var(--blu)
-            );
+            background: linear-gradient(120deg, var(--blu-scuro), var(--blu));
             min-height: 480px;
             padding: 100px 10%;
             color: white;
@@ -234,6 +248,22 @@
             text-decoration: underline;
         }
 
+        /* DETTAGLI SQUADRE */
+
+        .team-details {
+            display: none;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e8edf3;
+            color: #687386;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .team-details.active {
+            display: block;
+        }
+
         /* SOCIETA */
 
         .about {
@@ -310,31 +340,22 @@
             font-size: 12px;
         }
 
-        /* DETTAGLI SQUADRA */
-
-        .team-details {
-            display: none;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #e8edf3;
-            color: #687386;
-            line-height: 1.8;
-            font-size: 14px;
-        }
-
-        .team-details.active {
-            display: block;
-        }
+        /* RESPONSIVE */
 
         @media (max-width: 750px) {
+
             nav {
-                padding: 0 5%;
-                height: auto;
-                min-height: 75px;
+                padding: 15px 5%;
                 flex-wrap: wrap;
-                gap: 15px;
-                padding-top: 18px;
-                padding-bottom: 18px;
+            }
+
+            .brand img {
+                width: 52px;
+                height: 52px;
+            }
+
+            .logo {
+                font-size: 18px;
             }
 
             .nav-links {
@@ -363,6 +384,7 @@
                 font-size: 100px;
             }
         }
+
     </style>
 </head>
 
@@ -371,7 +393,18 @@
     <!-- NAVBAR -->
 
     <nav>
-        <div class="logo">BOTTANUCO <span>VOLLEY.</span></div>
+
+        <!-- Cliccando sul logo si torna alla home -->
+
+        <a class="brand" href="#home" aria-label="Torna alla home">
+
+            <img src="logo.png" alt="Logo ASD Bottanuco Volley">
+
+            <div class="logo">
+                BOTTANUCO <span>VOLLEY.</span>
+            </div>
+
+        </a>
 
         <div class="nav-links">
             <a href="#home">HOME</a>
@@ -379,11 +412,13 @@
             <a href="#societa">SOCIETÀ</a>
             <a href="#contatti">CONTATTI</a>
         </div>
+
     </nav>
 
     <!-- HERO -->
 
     <section class="hero" id="home">
+
         <div class="hero-content">
 
             <div class="tag">PASSIONE • SPORT • SQUADRA</div>
@@ -401,6 +436,7 @@
             </a>
 
         </div>
+
     </section>
 
     <!-- SQUADRE -->
@@ -412,8 +448,7 @@
         <h2 class="section-title">LE SQUADRE</h2>
 
         <p class="section-description">
-            Scopri le formazioni del Bottanuco Volley e i rispettivi
-            campionati.
+            Scopri le formazioni del Bottanuco Volley e i rispettivi campionati.
         </p>
 
         <div class="teams">
@@ -434,8 +469,7 @@
 
                 <span class="division">SERIE C</span>
 
-                <a class="team-link"
-                   onclick="toggleDetails('prima')">
+                <a class="team-link" onclick="toggleDetails('prima')">
                     SCOPRI LA SQUADRA →
                 </a>
 
@@ -457,14 +491,13 @@
 
                 <p>
                     Una formazione competitiva che partecipa al
-                    campionato provinciale di Seconda Divisione,
-                    con l'obiettivo di migliorare e crescere.
+                    campionato di Seconda Divisione, con l'obiettivo
+                    di migliorare e crescere.
                 </p>
 
                 <span class="division">SECONDA DIVISIONE</span>
 
-                <a class="team-link"
-                   onclick="toggleDetails('seconda')">
+                <a class="team-link" onclick="toggleDetails('seconda')">
                     SCOPRI LA SQUADRA →
                 </a>
 
@@ -487,17 +520,18 @@
         <div class="container about-content">
 
             <div>
+
                 <div class="section-label">CHI SIAMO</div>
 
                 <h2>LA PASSIONE<br>CI UNISCE.</h2>
 
                 <p>
                     Il Bottanuco Volley è una realtà sportiva
-                    dedicata alla pallavolo e alla crescita
-                    degli atleti. Attraverso il lavoro di squadra,
-                    l'impegno e la passione, la società promuove
-                    i valori dello sport dentro e fuori dal campo.
+                    dedicata alla pallavolo e alla crescita degli atleti.
+                    Attraverso il lavoro di squadra, l'impegno e la passione,
+                    la società promuove i valori dello sport dentro e fuori dal campo.
                 </p>
+
             </div>
 
             <div class="about-box">
@@ -531,6 +565,7 @@
 
         <a href="https://www.google.com/maps/search/?api=1&query=Via+John+Fitzgerald+Kennedy+8+Bottanuco"
            target="_blank"
+           rel="noopener noreferrer"
            class="hero-button">
             COME RAGGIUNGERCI →
         </a>
@@ -544,13 +579,13 @@
     </footer>
 
     <script>
+
         function toggleDetails(id) {
 
-            const selected = document.getElementById(id);
-
-            selected.classList.toggle('active');
+            document.getElementById(id).classList.toggle('active');
 
         }
+
     </script>
 
 </body>
